@@ -1,0 +1,124 @@
+/* --- ESTILO JURASSIC SHOP --- */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://virtualbackgrounds.site/wp-content/uploads/2021/02/jurassic-park-main-gate.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #f1f1f1;
+}
+
+.login-container {
+    background-color: rgba(26, 26, 26, 0.95);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.2);
+    width: 400px;
+    border: 2px solid #ffc107; /* Borde amarillo icónico */
+    position: relative;
+}
+
+/* Franja roja decorativa superior */
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: #960000;
+}
+
+h2 {
+    text-align: center;
+    color: #ffc107;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #000;
+}
+
+.subtitle {
+    text-align: center;
+    color: #960000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ffc107;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #960000;
+    color: white;
+    border: 1px solid #ffc107;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 0;
+    margin-bottom: 20px;
+    font-size: 13px;
+    text-align: center;
+    border-left: 5px solid;
+}
+.alert-error { background-color: #4a0000; color: #ffc107; border-color: #960000; }
+.alert-success { background-color: #1a4a1a; color: #d4edda; border-color: #28a745; }
+
+a.link-access {
+    color: #ffc107;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+}
+
+a.link-access:hover {
+    text-decoration: underline;
+}

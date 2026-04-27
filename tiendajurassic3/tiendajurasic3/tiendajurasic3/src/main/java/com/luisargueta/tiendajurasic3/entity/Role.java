@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
-public class Rol {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,10 @@ public class Rol {
     private String role;
 
 
-    public Rol() {
+    public Role() {
     }
 
-    public Rol(String role, Integer idRol) {
+    public Role(String role, Integer idRol) {
         this.role = role;
         this.idRol = idRol;
     }

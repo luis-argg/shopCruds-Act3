@@ -1,4 +1,4 @@
 package com.luisargueta.tiendajurasic3.service;
 
-public class RolServiceImpl {
+public class RoleServiceImpl {
 }

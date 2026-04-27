@@ -1,7 +1,6 @@
 package com.luisargueta.tiendajurasic3.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -32,15 +31,54 @@ public class User {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
+    @NotBlank(message = "The username can not be empty")
+    @Column(name = "user_name", unique = true)
+    private String userName;
+
+    @NotBlank(message = "The password can not be empty")
+    @Column(name = "password")
+    private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "id_role")
+    private Role role;
+
     public User() {
     }
 
-    public User(Integer idUser, String firstName, String lastName, String address, Boolean isActive) {
+    public User(Integer idUser, String firstName, String lastName, String address, Boolean isActive, String userName, String password, Role role) {
         this.idUser = idUser;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.isActive=isActive;
+        this.isActive = isActive;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Integer getIdUser() {

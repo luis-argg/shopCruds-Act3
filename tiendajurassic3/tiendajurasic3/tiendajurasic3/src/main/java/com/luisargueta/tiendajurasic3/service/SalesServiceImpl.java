@@ -28,18 +28,29 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public Sales create(Sales sales) {
-        salesRepostory.setIdSale(id);
+        sales.setIdSale(null);
         return salesRepostory.save(sales);
 
     }
 
     @Override
     public Sales update(Integer id, Sales sales) {
-        return null;
+        Sales exists = getById(id);
+
+        exists.setSaleDate(sales.getSaleDate());
+        exists.setTotal(sales.getTotal());
+
+        return salesRepostory.save(exists);
     }
 
     @Override
     public void delete(Integer id) {
+        if(!salesRepostory.existsById(id)){
+            throw new ResourceNotFoundException("User with id" +  id + "not found");
+        }
+
+        salesRepostory.deleteById(id);
+
 
     }
 }

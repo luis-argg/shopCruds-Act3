@@ -3,9 +3,11 @@ package com.luisargueta.tiendajurasic3.service;
 import com.luisargueta.tiendajurasic3.entity.User;
 import com.luisargueta.tiendajurasic3.exception.ResourceNotFoundException;
 import com.luisargueta.tiendajurasic3.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
@@ -27,6 +29,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User create(User user) {
+        user.setIdUser(null);
         return userRepository.save(user);
     }
 

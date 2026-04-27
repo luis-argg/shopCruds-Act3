@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jurassic Shop-Login</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="login-container">
+    <h2>SYSTEM ACCESS</h2>
+    <p class="subtitle">Jurassic Shop Control Terminal</p>
+
+    <div th:if="${param.error}" class="alert alert-error">
+        ACCESS DENIED: Credentials invalid..
+    </div>
+
+    <div th:if="${param.logout}" class="alert alert-success">
+        SESSION CLOSSED Clossing account..
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label>USERNAME:</label>
+            <input type="text" name="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+            <label>PASSWORD:</label>
+            <input type="password" name="password" placeholder="********" required>
+        </div>
+
+        <button type="submit">LOGIN</button>
+
+        <a class="link-access" th:href="@{/auth/register}">¿Don't have an account? Register here</a>
+    </form>
+</div>
+
+</body>
+</html>
