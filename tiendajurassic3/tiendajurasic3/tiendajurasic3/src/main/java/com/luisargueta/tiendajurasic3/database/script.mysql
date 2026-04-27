@@ -1,0 +1,101 @@
+DROP DATABASE IF EXISTS jurassic_shop_in5bv;
+CREATE DATABASE jurassic_shop_in5bv;
+USE jurassic_shop_in5bv;
+
+
+CREATE TABLE roles (
+    id_role INT PRIMARY KEY AUTO_INCREMENT,
+    role VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE users (
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    user_name varchar (67) not null,
+    password varchar (20) not null,
+    address VARCHAR(150) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    id_role INT NOT NULL,
+    CONSTRAINT fk_user_role FOREIGN KEY (id_role) REFERENCES roles(id_role)
+);
+
+CREATE TABLE products (
+    product_code INT PRIMARY KEY AUTO_INCREMENT,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL
+);
+
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    sale_date DATE NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    id_customer INT NOT NULL,
+    CONSTRAINT fk_sale_customer FOREIGN KEY (id_customer) REFERENCES users(id_user)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE sales_details (
+    id_details INT PRIMARY KEY AUTO_INCREMENT,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    product_code INT NOT NULL,
+    sale_id INT NOT NULL,
+    CONSTRAINT fk_detail_product FOREIGN KEY (product_code) REFERENCES products(product_code)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_detail_sale FOREIGN KEY (sale_id) REFERENCES sales(sale_id)
+        ON DELETE CASCADE
+);
+
+
+
+INSERT INTO roles (role) VALUES
+('USER'),
+('ADMIN');
+
+-- Users
+INSERT INTO users (first_name, last_name, address, is_active, user_name, password, id_role) VALUES
+('Alan', 'Grant', 'Montana, USA', TRUE, 'agrant', 'paleo123', 1),
+('Ellie', 'Sattler', 'Wisconsin, USA', TRUE, 'esattler', 'botany456', 1),
+('Ian', 'Malcolm', 'Austin, Texas', TRUE, 'chaostheory', 'life_finds_a_way', 1),
+('John', 'Hammond', 'Isla Nublar, CR', TRUE, 'spared_no_expense', 'dinoadmin', 2),
+('Dennis', 'Nedry', 'Sistemas IT - Isla Nublar', TRUE, 'dnedry', 'whte_rbt_obj', 2),
+('Ray', 'Arnold', 'Centro de Control', TRUE, 'rarnold', 'hold_onto_your_butts', 2),
+('Robert', 'Muldoon', 'Recinto de Raptores', TRUE, 'rmuldoon', 'clever_girl', 2),
+('Lex', 'Murphy', 'Mansión Hammond', TRUE, 'lex_unix', 'hacktheplanet', 1),
+('Tim', 'Murphy', 'Mansión Hammond', TRUE, 'timmy_dino', 'stegosaurus', 1),
+('Henry', 'Wu', 'Laboratorio de Genética', TRUE, 'hwu', 'genetics_2026', 2);
+
+
+-- Products
+INSERT INTO products (product_name, price, stock) VALUES
+('Ámbar con Mosquito', 1500.00, 5),
+('Gafas de Visión Nocturna', 2500.00, 10),
+('Réplica de Garra de Raptor', 120.00, 50),
+('Jeep Wrangler Staff Edition', 45000.00, 2),
+('Bote de Barbasol', 450.00, 15),
+('Gorra oficial Jurassic Park', 25.00, 100),
+('Manual de Supervivencia de Alan Grant', 35.00, 40),
+('Kit de ADN de Dinosaurio', 500.00, 20),
+('Radio de largo alcance', 150.00, 30),
+('Peluche de T-Rex', 45.00, 60);
+
+-- Sales
+INSERT INTO sales (sale_date, total, id_customer) VALUES
+('2026-04-01', 1500.00, 1),
+('2026-04-02', 450.00, 5),
+('2026-04-03', 2500.00, 7),
+('2026-04-04', 120.00, 2),
+('2026-04-05', 90.00, 9),
+('2026-04-06', 45000.00, 4);
+
+-- Sales Details
+INSERT INTO sales_details (quantity, unit_price, subtotal, product_code, sale_id) VALUES
+(1, 1500.00, 1500.00, 1, 1),
+(1, 450.00, 450.00, 5, 2),
+(1, 2500.00, 2500.00, 2, 3),
+(1, 120.00, 120.00, 3, 4),
+(2, 45.00, 90.00, 10, 5),
+(1, 45000.00, 45000.00, 4, 6);
