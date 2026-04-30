@@ -5,13 +5,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "product_code" , nullable = false)
-    private Integer idProducto;
+    private Integer idProduct;
 
     @NotNull(message = "The name of the product can not be empty")
     @Column(name = "product_name", nullable = false)
@@ -30,12 +31,19 @@ public class Product {
     public Product() {
     }
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Product(Integer idProduct, String productName, Double price, Integer stock) {
+        this.idProduct = idProduct;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Integer getIdProduct() {
+        return idProduct;
     }
 
     public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+        this.idProduct = idProduct;
     }
 
     public String getProductName() {

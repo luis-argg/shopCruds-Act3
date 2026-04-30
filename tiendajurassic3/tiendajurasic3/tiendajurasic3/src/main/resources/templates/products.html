@@ -1,10 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Jurassic Shop-Product Management</title>
+    <link rel="stylesheet" th:href="@{/css/cruds.css}">
 </head>
 <body>
+
+<div class="crud-container">
+    <header class="crud-header">
+        <div>
+            <h1>PRODUCT DATABASE</h1>
+            <p class="subtitle">Personnel Access Control - InGen Terminal</p>
+        </div>
+        <button class="btn-create" onclick="openCreateModal()">+ NEW ACCESS</button>
+    </header>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>PRODUCT NAME</th>
+                <th>PRICE</th>
+                <th>TOTAL</th>
+                <th>ACTIONS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="productRow : ${product}">
+                <td th:text="${product.idProduct}"></td>
+                <td th:text="${productRow.productName}"></td>
+                <td th:text="${productRow.price}"></td>
+                <td th:text="${product.stock}"></td>
+                <td class="actions">
+                    <button class="btn-edit" th:onclick="'openEdit(' + ${productRow.idProduct} + ')'">EDIT</button>
+                    <a th:href="@{/users/delete/{id}(id=${userRow.idUser})}"
+                       class="btn-delete"
+                       onclick="return confirm('CRITICAL: REVOKE ACCESS PERMANENTLY?')">REVOKE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer-actions">
+        <a th:href="@{/home}" class="link-access">← Return to Main Terminal</a>
+    </div>
+</div>
+
+<div id="userModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">AUTHORIZE PERSONNEL</h2>
+
+        <form th:action="@{/users/create}" th:object="${user}" method="post" id="userForm">
+            <input type="hidden" th:field="*{idUser}" id="idUser">
+
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>FIRST NAME:</label>
+                    <input type="text" th:field="*{firstName}" required placeholder="Name">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>LAST NAME:</label>
+                    <input type="text" th:field="*{lastName}" required placeholder="Lastname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>BASE ADDRESS:</label>
+                <input type="text" th:field="*{address}" required placeholder="Isla Nublar Sector...">
+            </div>
+
+            <div class="form-group">
+                <label>SYSTEM ID (Username):</label>
+                <input type="text" th:field="*{userName}" required placeholder="Unique ID">
+            </div>
+
+            <div class="form-group" id="passwordGroup">
+                <label>ENCRYPTED PASSWORD:</label>
+                <input type="password" th:field="*{password}" required placeholder="********">
+            </div>
+
+            <button type="submit" class="btn-save">EXECUTE AUTHORIZATION</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('userModal');
+    const form = document.getElementById('userForm');
+    const title = document.getElementById('modalTitle');
+
+    function openCreateModal() {
+        title.innerText = "AUTHORIZE NEW PERSONNEL";
+        form.action = "/users/create";
+        document.getElementById('idUser').value = '';
+        form.reset();
+        document.getElementById('passwordGroup').style.display = 'block';
+        modal.style.display = 'flex';
+    }
+
+    function openEdit(id) {
+        // Redirige al controlador de edición
+        window.location.href = "/users/edit/" + id;
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Cerrar modal al hacer clic fuera de él
+    window.onclick = function(event) {
+        if (event.target == modal) closeModal();
+    }
+</script>
 
 </body>
 </html>

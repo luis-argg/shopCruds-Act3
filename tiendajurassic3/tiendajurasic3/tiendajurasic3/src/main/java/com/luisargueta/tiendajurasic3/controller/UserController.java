@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String showFormNew(Model model) {
+    public String showFromNew(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("modoEdicion", false);
         return "user-form";

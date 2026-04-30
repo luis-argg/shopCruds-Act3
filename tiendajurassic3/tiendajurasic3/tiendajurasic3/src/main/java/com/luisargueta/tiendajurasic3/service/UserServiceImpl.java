@@ -35,19 +35,19 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User update(Integer id, User user) {
-        User exists = getById(id);
+        User userExists = getById(id);
 
-        exists.setFirstName(user.getFirstName());
-        exists.setLastName(user.getLastName());
-        exists.setActive(user.getActive());
+        userExists.setFirstName(user.getFirstName());
+        userExists.setLastName(user.getLastName());
+        userExists.setActive(user.getActive());
 
-        return exists;
+        return userRepository.save(userExists);
     }
 
     @Override
     public void delete(Integer id) {
         if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User with ID: " + id  + " not found");
+            throw new ResourceNotFoundException("User with ID: " + id  + " not found");
         }
 
         userRepository.deleteById(id);

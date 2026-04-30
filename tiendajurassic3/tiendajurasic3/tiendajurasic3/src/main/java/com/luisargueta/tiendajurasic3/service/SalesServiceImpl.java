@@ -35,12 +35,13 @@ public class SalesServiceImpl implements SalesService {
 
     @Override
     public Sales update(Integer id, Sales sales) {
-        Sales exists = getById(id);
+        Sales salesExists = getById(id);
 
-        exists.setSaleDate(sales.getSaleDate());
-        exists.setTotal(sales.getTotal());
+        salesExists.setSaleDate(sales.getSaleDate());
+        salesExists.setTotal(sales.getTotal());
 
-        return salesRepostory.save(exists);
+
+        return salesRepostory.save(salesExists);
     }
 
     @Override
