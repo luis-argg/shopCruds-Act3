@@ -14,10 +14,10 @@ body {
 
 .login-container {
     background-color: rgba(26, 26, 26, 0.95);
-    padding: 40px;
+    padding: 50px;
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(255, 193, 7, 0.2);
-    width: 400px;
+    width: 450px;
     border: 2px solid #ffc107; /* Borde amarillo icónico */
     position: relative;
 }
@@ -47,7 +47,7 @@ h2 {
     text-align: center;
     color: #960000;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 30px;
     text-transform: uppercase;
 }
@@ -61,7 +61,7 @@ label {
     margin-bottom: 5px;
     color: #ffc107;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14xpx;
 }
 
 input {
@@ -72,6 +72,7 @@ input {
     border-radius: 3px;
     box-sizing: border-box;
     color: white;
+    font-size: 15px; /* Añade esta línea */
 }
 
 input:focus {
@@ -121,4 +122,102 @@ a.link-access {
 
 a.link-access:hover {
     text-decoration: underline;
+}
+/* --- EXTENSIÓN PARA HOME --- */
+.home-container {
+    background-color: rgba(26, 26, 26, 0.95);
+    padding: 40px;
+    border-radius: 5px;
+    border: 2px solid #ffc107;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #960000;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+header h1 {
+    color: #ffc107;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+.status-text {
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+}
+
+.online {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* Contenedor principal para los botones */
+.menu-flex {
+    display: flex;
+    flex-wrap: wrap; /* Permite que bajen a la siguiente fila */
+    justify-content: center; /* Centra los elementos */
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.menu-card {
+    background: rgba(51, 51, 51, 0.8);
+    border: 1px solid #555;
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+
+    /* Para lograr el 2 arriba / 3 abajo: */
+    /* En pantallas grandes, las de arriba ocuparán casi el 50% */
+    /* Las de abajo se ajustarán solas por el espacio */
+    flex: 0 1 280px;
+    min-width: 250px;
+    border-bottom: 4px solid #960000; /* Detalle estético rojo inferior */
+}
+
+.menu-card:hover {
+    border-color: #ffc107;
+    background: rgba(68, 68, 68, 0.9);
+    transform: scale(1.05); /* Efecto de zoom leve */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Títulos y textos */
+.menu-card h3 {
+    color: #ffc107;
+    margin: 15px 0 5px 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-card p {
+    font-size: 13px;
+    color: #ccc;
+    margin: 0;
+}
+/* Botón de Logout */
+.logout-section {
+    text-align: center;
+}
+
+.btn-logout {
+    background-color: #960000;
+    width: auto;
+    padding: 10px 30px;
+    font-size: 14px;
+}
+
+.btn-logout:hover {
+    background-color: #ffc107;
+    color: black;
 }

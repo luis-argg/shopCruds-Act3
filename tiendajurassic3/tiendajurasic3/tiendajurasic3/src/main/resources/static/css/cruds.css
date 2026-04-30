@@ -1,0 +1,150 @@
+/* --- ESTILOS CRUD USUARIOS - INGEN TERMINAL --- */
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://theculturednerd.org/wp-content/uploads/2020/08/isla-sorna.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+.crud-container {
+    background-color: rgba(20, 20, 20, 0.9);
+    width: 95%;
+    max-width: 1000px;
+    padding: 30px;
+    border: 1px solid #ffc107;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.crud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #960000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+h1 { color: #ffc107; margin: 0; font-size: 24px; }
+.subtitle { color: #960000; font-weight: bold; font-size: 12px; margin: 5px 0 0 0; text-transform: uppercase; }
+
+/* Tabla Estilo Terminal */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #eee;
+    font-size: 14px;
+}
+
+th {
+    background: #960000;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    background: rgba(40, 40, 40, 0.5);
+}
+
+tr:hover td {
+    background: rgba(60, 60, 60, 0.8);
+}
+
+/* Botones de Acción */
+.btn-create {
+    background: #ffc107;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn-edit { background: #28a745; color: white; border: none; padding: 6px 12px; cursor: pointer; margin-right: 5px; font-weight: bold; }
+.btn-delete { background: #960000; color: white; border: none; padding: 6px 12px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
+
+.footer-actions { margin-top: 20px; }
+.link-access { color: #ffc107; text-decoration: none; font-size: 13px; }
+.link-access:hover { text-decoration: underline; }
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #111;
+    border: 2px solid #ffc107;
+    padding: 30px;
+    width: 400px;
+    position: relative;
+    box-shadow: 0 0 50px #000;
+}
+
+.modal-content h2 { color: #ffc107; margin-top: 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 10px; }
+
+.close-modal {
+    position: absolute;
+    top: 10px; right: 15px;
+    color: #ffc107;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Estilos de Formulario dentro del Modal */
+.form-group { margin-bottom: 15px; }
+.form-group label {
+    display: block;
+    color: #ffc107;
+    font-size: 11px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: 1px solid #444;
+    color: #00ff00; /* Verde terminal */
+    font-family: 'Courier New', monospace;
+    box-sizing: border-box;
+}
+
+.form-group input:focus { border-color: #ffc107; outline: none; background: #2a2a2a; }
+
+.btn-save {
+    width: 100%;
+    margin-top: 10px;
+    background: #960000;
+    color: white;
+    border: 1px solid #ffc107;
+    padding: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn-save:hover { background: #bc0000; }

@@ -24,6 +24,7 @@ public class UserController {
     @GetMapping
     public String showsUsers(Model model){
         model.addAttribute("users",userService.listUsers());
+        model.addAttribute("user", new User());
         return "users";
     }
 
@@ -35,9 +36,9 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@Validated @ModelAttribute User user, Model model, BindingResult result){
+    public String createUser(@Validated @ModelAttribute("user") User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("modeEdicion", false);
+            model.addAttribute("modoEdicion", false);
             return "user-form";
         }
 

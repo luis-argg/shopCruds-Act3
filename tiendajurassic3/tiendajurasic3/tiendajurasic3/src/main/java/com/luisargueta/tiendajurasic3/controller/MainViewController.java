@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class AuthController {
+public class MainViewController {
 
-        @GetMapping("/login")
-        public String login() {
-            return "login";
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+
         }
 
-        @GetMapping("/home")
-        public String home() {
+    @GetMapping("/home")
+    public String home() {
             return "home";
         }
 
@@ -30,5 +31,7 @@ public class AuthController {
     public String registerUser(@ModelAttribute("user") User user) {
         return "redirect:/login?success";
     }
-    }
+
+
+}
 

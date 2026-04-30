@@ -28,8 +28,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**", "/auth/** ").permitAll()
-                        .requestMatchers("/users/**").hasRole("ADMIN")
+                        .requestMatchers("/login", "/css/**", "/js/**", "/register").permitAll()
+                        .requestMatchers("/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -37,7 +37,13 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll());
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .permitAll()
+                );
 
         return http.build();
     }
@@ -46,13 +52,10 @@ public class SecurityConfig {
     public UserDetailsManager userDetailsManager() {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        // Consultas personalizadas para que coincidan con TU base de datos
-        // 1. Para buscar al usuario
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT user_name, password, is_active FROM users WHERE user_name = ?"
         );
 
-        // 2. Para buscar su rol (Spring Security necesita el prefijo ROLE_)
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "SELECT u.user_name, CONCAT('ROLE_', r.role) " +
                         "FROM users u " +

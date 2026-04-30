@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jurassic Shop - Control Panel</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="home-container">
+    <header>
+        <h1>MAIN CONTROL PANEL</h1>
+        <p class="status-text">SYSTEM STATUS: <span class="online">ONLINE</span></p>
+    </header>
+
+    <div class="menu-flex">
+        <a th:href="@{/products}" class="menu-card">
+            <div class="card-icon">📦</div>
+            <h3>PRODUCTS</h3>
+            <p>Manage store inventory</p>
+        </a>
+
+        <a th:href="@{/sales}" class="menu-card">
+            <div class="card-icon">💰</div>
+            <h3>SALES</h3>
+            <p>View transaction records</p>
+        </a>
+
+        <a th:href="@{/salesDetails}" class="menu-card">
+            <div class="card-icon">📋</div>
+            <h3>SALES DETAILS</h3>
+            <p>Detailed sales analysis</p>
+        </a>
+
+        <a th:href="@{/users}" class="menu-card">
+            <div class="card-icon">👥</div>
+            <h3>USERS</h3>
+            <p>Control access levels</p>
+        </a>
+
+        <a th:href="@{/rol}" class="menu-card">
+            <div class="card-icon">🔑</div>
+            <h3>ROLES</h3>
+            <p>System permissions</p>
+        </a>
+    </div>
+
+    <form th:action="@{/logout}" method="post" class="logout-section">
+        <button type="submit" class="btn-logout">SHUTDOWN SESSION</button>
+    </form>
+</div>
+
+</body>
+</html>
